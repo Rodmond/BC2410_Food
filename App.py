@@ -44,7 +44,7 @@ def diet_planner(df, calorie_upper, calorie_lower):
     m.addConstr(total_calories >= calorie_lower, "Calorie_lower")
 
     # Add constraint for unique food items and only 1 serving of each food portion
-    m.addConstr(quicksum(food_chosen[i] for i in df.index) <= 5, "Unique_food_items")
+    m.addConstr(quicksum(food_chosen[i] for i in df.index) <= 10, "Unique_food_items")
     m.addConstr(quicksum(food_chosen[i] for i in df.index) >=3, "Unique_food_items_2")
 
     # Add nutrient constraints
@@ -275,7 +275,7 @@ def display_total_nutrients():
         calories_lower = rec_calories[0]
         calories_upper = rec_calories[1]
 
-        diet_planner(nutrition_data,calories_upper,calories_upper)
+        diet_planner(nutrition_data,calories_upper,calories_lower)
 
         # # Calculate the total nutrients consumed
         # total_nutrients = nutrition_data.sum(numeric_only=True)
