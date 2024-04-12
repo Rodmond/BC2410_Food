@@ -84,13 +84,13 @@ def diet_planner(df, calorie_upper, calorie_lower):
         {f'{nl}'.join([f"{df.loc[int(v.varName.split('[')[1].split(']')[0]), 'name']}: {round(v.x,1)} servings, {round(v.x * df.loc[int(v.varName.split('[')[1].split(']')[0]), 'calories'],1)} calories" for v in m.getVars() if v.x > 0 and 'chosen' not in v.varName])}
         \n
         
-        Total calories: {total_calories.getValue()} kCal \n
-        Total carbohydrates: {total_carbs.getValue()} grams \n
-        Total sodium: {total_sodium.getValue()} miligrams \n
-        Total cholesterol: {total_cholesterol.getValue()} miligrams \n
-        Total fat: {total_fat.getValue()} grams \n
-        Total fiber: {total_fiber.getValue()} grams \n
-        Total saturated fat: {total_saturated_fat.getValue()} grams \n
+        Total calories: {round(total_calories.getValue())} kCal \n
+        Total carbohydrates: {round(total_carbs.getValue())} grams \n
+        Total sodium: {round(total_sodium.getValue())} miligrams \n
+        Total cholesterol: {round(total_cholesterol.getValue())} miligrams \n
+        Total fat: {round(total_fat.getValue())} grams \n
+        Total fiber: {round(total_fiber.getValue())} grams \n
+        Total saturated fat: {round(total_saturated_fat.getValue())} grams \n
         """)
     else: #recommend new plan
         messagebox.showinfo("Infomation",f"""Unfortunately, we were unable to come up with a suitable meal plan to meet your needs. \n
@@ -331,7 +331,7 @@ get_button = Button(window, text="Enter", command=get_nutrition)
 get_button.grid(row=6, column=0, sticky=W+E)
 
 # Create a Button that will display the total nutrients when clicked
-total_button = Button(window, text="Total Nutrients", command=display_total_nutrients)
+total_button = Button(window, text="Create Optimised Meal Plan", command=display_total_nutrients)
 total_button.grid(row=7, column=0, sticky=W+E)
 
 # Create a Button that will reset the data when clicked
